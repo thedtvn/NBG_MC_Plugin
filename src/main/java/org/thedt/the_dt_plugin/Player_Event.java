@@ -118,7 +118,6 @@ public class Player_Event implements Listener {
                     ItemStack item = items.get(rand.nextInt(items.size()));
                     held.setAmount(held.getAmount() - needKey);
                     event.getPlayer().sendMessage("Opened "+keyname);
-                    event.getPlayer().playEffect(EntityEffect.FIREWORK_EXPLODE);
                     if (item.getType() == Material.BARRIER) {
                         event.getPlayer().sendMessage("Sory, you have not thing :<");
                     } else {
