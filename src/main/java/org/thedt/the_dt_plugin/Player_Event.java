@@ -82,7 +82,7 @@ public class Player_Event implements Listener {
             }
             Chest chest = (Chest) block.getState();
             String name = chest.getCustomName();
-            if (name != null && name.toLowerCase().startsWith("3b1f8cf6-bbdd-46c0-86df-5e38da6c76af")) {
+            if (name != null && name.toLowerCase().startsWith("c0fa238ee3|")) {
                 ItemStack held = event.getPlayer().getInventory().getItemInMainHand();
                 ItemMeta meta = held.getItemMeta();
                 if (held.getType() == Material.COMMAND_BLOCK || held.getType() == Material.DEBUG_STICK) {
@@ -118,9 +118,14 @@ public class Player_Event implements Listener {
                     ItemStack item = items.get(rand.nextInt(items.size()));
                     held.setAmount(held.getAmount() - needKey);
                     event.getPlayer().sendMessage("Opened "+keyname);
+                    event.getPlayer().playSound(block.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 100, 1);
+                    Location loc = block.getLocation();
+                    loc.setY(loc.getY() + 1);
+                    event.getPlayer().spawnParticle(Particle.EXPLOSION_NORMAL, loc, 50);
                     if (item.getType() == Material.BARRIER) {
                         event.getPlayer().sendMessage("Sory, you have not thing :<");
                     } else {
+                        event.getPlayer().playNote(block.getLocation(), Instrument.PIANO, Note.sharp(2, Note.Tone.F));
                         event.getPlayer().getInventory().addItem(item);
                         String iname;
                         if (item.hasItemMeta()) {
