@@ -127,7 +127,7 @@ public class Player_Event implements Listener {
                         if (item.hasItemMeta()) {
                             iname = item.getItemMeta().getDisplayName();
                         } else {
-                            iname = "";
+                            iname = item.getType().name().toLowerCase();
                         }
                         event.getPlayer().sendMessage("You got: x" + item.getAmount() + " " + iname);
                     }
