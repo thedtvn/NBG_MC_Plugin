@@ -123,7 +123,13 @@ public class Player_Event implements Listener {
                         event.getPlayer().sendMessage("Sory, you have not thing :<");
                     } else {
                         event.getPlayer().getInventory().addItem(item);
-                        event.getPlayer().sendMessage("You got: x" + item.getAmount() + " " + item.getType().name().toLowerCase());
+                        String iname;
+                        if (item.hasItemMeta()) {
+                            iname = item.getItemMeta().getDisplayName();
+                        } else {
+                            iname = "";
+                        }
+                        event.getPlayer().sendMessage("You got: x" + item.getAmount() + " " + iname);
                     }
                 } else {
                     blockmessage(event.getPlayer(), keyname);
