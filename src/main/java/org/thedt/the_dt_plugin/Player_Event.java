@@ -25,9 +25,13 @@ import java.util.Random;
 import static org.bukkit.Bukkit.getServer;
 
 public class Player_Event implements Listener {
-
     public static String[] key_name =  {"Common Key", "Uncommon Key", "Rare Key", "Epic Key", "Legendary Key"};
 
+    public static The_DT_Plugin root_plugin;
+
+    public Player_Event(The_DT_Plugin main_plugin) {
+        root_plugin = main_plugin;
+    }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -36,6 +40,7 @@ public class Player_Event implements Listener {
             tickManager.setFrozen(false);
         }
     }
+
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
@@ -123,13 +128,17 @@ public class Player_Event implements Listener {
                     loc.setY(loc.getY() + 1);
                     event.getPlayer().spawnParticle(Particle.EXPLOSION_NORMAL, loc, 50);
                     if (item.getType() == Material.BARRIER) {
-                        event.getPlayer().sendMessage("Sory, you have not thing :<");
+                        event.getPlayer().sendMessage("Sory, you have nothing :<");
                     } else {
                         event.getPlayer().playNote(block.getLocation(), Instrument.PIANO, Note.sharp(2, Note.Tone.F));
                         event.getPlayer().getInventory().addItem(item);
                         String iname;
                         if (item.hasItemMeta()) {
-                            iname = item.getItemMeta().getDisplayName();
+                            if (!item.getItemMeta().hasDisplayName()) {
+                                iname = item.getType().name().toLowerCase();
+                            } else {
+                                iname = item.getItemMeta().getDisplayName();
+                            }
                         } else {
                             iname = item.getType().name().toLowerCase();
                         }
