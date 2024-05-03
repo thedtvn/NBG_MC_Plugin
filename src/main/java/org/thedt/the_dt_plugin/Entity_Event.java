@@ -50,8 +50,11 @@ public class Entity_Event implements Listener {
         LivingEntity entity = event.getEntity();
         if (entity.getSpawnCategory() != SpawnCategory.MONSTER && entity.getCategory() != EntityCategory.ILLAGER) {
             return;
-        }
-        if (entity.isDead()) {
+        } else if (entity.isDead()) {
+            return;
+        } else if (entity.isInsideVehicle()) {
+            return;
+        } else if (entity.getMaxHealth() > 100) {
             return;
         }
         PersistentDataContainer container_entity = entity.getPersistentDataContainer();

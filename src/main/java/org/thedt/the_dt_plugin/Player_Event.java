@@ -25,7 +25,7 @@ import java.util.Random;
 import static org.bukkit.Bukkit.getServer;
 
 public class Player_Event implements Listener {
-    public static String[] key_name =  {"Common Key", "Uncommon Key", "Rare Key", "Epic Key", "Legendary Key"};
+    public static String[] key_name =  {"Common Key", "Uncommon Key", "Rare Key", "Epic Key", "Legendary Key", "Event Key"};
 
     public static The_DT_Plugin root_plugin;
 
@@ -102,10 +102,17 @@ public class Player_Event implements Listener {
                     if (!Objects.equals(meta.getLore().get(0), keyname)) {
                         blockmessage(event.getPlayer(), keyname);
                         return;
-                    }
-                    if (held.getAmount() < needKey) {
+                    } else if (held.getAmount() < needKey) {
                         event.getPlayer().sendMessage("You don't have enough key");
                         return;
+                    } else if (split[2].equals("5") && split[3] != null) {
+                        long end_time = Long.parseLong(split[3]);
+                        long currentTimeMillis = System.currentTimeMillis();
+                        long utcUnixTimeSeconds = currentTimeMillis / 1000;
+                        if (utcUnixTimeSeconds > end_time) {
+                            event.getPlayer().sendMessage("Event is over");
+                            return;
+                        }
                     }
                     Random rand = new Random();
                     ArrayList<ItemStack> items = new ArrayList<>();
