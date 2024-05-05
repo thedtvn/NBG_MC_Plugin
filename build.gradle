@@ -24,7 +24,7 @@ repositories {
 dependencies {
     compileOnly "io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT"
     compileOnly "com.onarandombox.multiversecore:multiverse-core:4.3.12"
-    compileOnly "com.onarandombox.multiverseinventories:multiverse-inventories:4.2.6"
+    compileOnly "com.onarandombox.multiverseinventories:Multiverse-Inventories:4.2.3"
 }
 
 def targetJavaVersion = 17

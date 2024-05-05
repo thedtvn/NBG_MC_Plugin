@@ -15,7 +15,10 @@ public class sk_reset implements CommandExecutor {
         if (!(sender instanceof Player player)) {
             return false;
         }
-        if (split[0] != "confirm") {
+        if (split.length != 1) {
+            player.sendMessage("`/sk_reset confirm` to reset your skyblock");
+            return true;
+        } else if (!Objects.equals(split[0], "confirm")) {
             player.sendMessage("`/sk_reset confirm` to reset your skyblock");
             return true;
         }
