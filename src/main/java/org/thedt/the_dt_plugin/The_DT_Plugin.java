@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.thedt.the_dt_plugin.skyblock.SkyBlock;
 import org.thedt.the_dt_plugin.skyblock.commands.c_skyblock;
+import org.thedt.the_dt_plugin.skyblock.commands.sk_reset;
 
 public final class The_DT_Plugin extends JavaPlugin {
 
@@ -18,6 +19,7 @@ public final class The_DT_Plugin extends JavaPlugin {
         getCommand("htp").setExecutor(new H_TP());
         getCommand("hub").setExecutor(new Spawn());
         getCommand("skyblock").setExecutor(new c_skyblock());
+        getCommand("sk_reset").setExecutor(new sk_reset());
         pm.registerEvents(new Player_Event(this), this);
         pm.registerEvents(new Entity_Event(this), this);
         pm.registerEvents(new SkyBlock(this), this);
