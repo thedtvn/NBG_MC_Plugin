@@ -15,16 +15,19 @@ public class sk_reset implements CommandExecutor {
         if (!(sender instanceof Player player)) {
             return false;
         }
-        if (!Objects.equals(split[0], "confirm")) {
+        if (split[0] != "confirm") {
             player.sendMessage("`/sk_reset confirm` to reset your skyblock");
             return true;
         }
         MultiverseCore core = (MultiverseCore) getServer().getPluginManager().getPlugin("Multiverse-Core");
-        assert core != null;
         if (getServer().getWorld("skyblock-" + player.getName()) == null) {
             player.sendMessage("You don't have skyblock to reset.");
             return true;
         }
+        player.sendMessage("Start resetting skyblock.");
+        player.teleport(getServer().getWorld("skyblock-" + player.getName()).getSpawnLocation());
+        player.getInventory().clear();
+        player.teleport(getServer().getWorld("world").getSpawnLocation());
         core.deleteWorld("skyblock-" + player.getName());
         boolean result = core.cloneWorld("skyblock", "skyblock-" + player.getName(), "");
         if (!result) {

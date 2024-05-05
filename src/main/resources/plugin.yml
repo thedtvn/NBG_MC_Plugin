@@ -13,3 +13,6 @@ commands:
   skyblock:
     description: Teleport to skyblock
     usage: "/skyblock"
+  sk_reset:
+    description: Reset skyblock
+    usage: "/sk_reset"
