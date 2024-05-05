@@ -11,6 +11,10 @@ public class H_TP implements CommandExecutor {
         if (!(sender instanceof Player player)) {
             return false;
         }
+        if (!player.getWorld().getName().startsWith("world")) {
+            player.sendMessage("This command only works in the world");
+            return true;
+        }
         Location bed = player.getRespawnLocation();
         if (bed == null) {
             player.teleport(player.getWorld().getSpawnLocation());

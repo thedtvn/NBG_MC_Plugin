@@ -2,10 +2,14 @@ name: The_DT_Plugin
 version: '0.1'
 main: org.thedt.the_dt_plugin.The_DT_Plugin
 api-version: '1.20'
+softdepend: ['Multiverse-Core', 'Multiverse-Inventories']
 commands:
   htp:
     description: Teleport to where you spawned
     usage: "/htp"
-  spawn:
+  hub:
     description: Teleport to world spawn
-    usage: "/spawn"
+    usage: "/hub"
+  skyblock:
+    description: Teleport to skyblock
+    usage: "/skyblock"

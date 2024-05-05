@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+
 import static org.bukkit.Bukkit.getServer;
 
 public class Spawn implements CommandExecutor {
@@ -17,7 +19,7 @@ public class Spawn implements CommandExecutor {
         World world = getServer().getWorld("world");
         assert world != null;
         player.teleport(world.getSpawnLocation());
-        player.sendMessage("Teleported to spawn");
+        player.sendMessage("Teleported to hub");
         return true;
     }
 }
